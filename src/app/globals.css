@@ -1,5 +1,4 @@
-/* app/globals.css */
-
+/* app/globals.css - Updated layout styles */
 /* === THEME VARIABLES === */
 :root[data-theme="light"] {
   --primary: #2563eb;
@@ -71,8 +70,45 @@ button {
   background: var(--hover-bg);
 }
 
+/* === LAYOUT STRUCTURE === */
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  padding: 0; /* Removed padding to eliminate space at top */
+  transition: margin-left 0.3s ease;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  margin-left: 250px;
+  border-top: 1px solid var(--border);
+  transition: margin-left 0.3s ease;
+}
+
 /* === MOBILE OPTIMIZATIONS === */
-@media (max-width: 640px) {
+@media (max-width: 767px) {
+  .main-content {
+    margin-left: 0;
+    padding-top: 40px 0 0 0; /* Reduced padding-top for mobile */
+  }
+
+  .footer {
+    margin-left: 0;
+  }
+  
   .toolCard {
     padding: 1rem;
   }
@@ -91,12 +127,4 @@ button {
   * {
     transition: none !important;
   }
-}
-
-/* === FOOTER === */
-.footer {
-  text-align: center;
-  padding: 1rem;
-  margin-left: 250px; /* Same as main's marginLeft */
-  width: calc(100% - 250px); /* Adjust width to account for sidebar */
 }

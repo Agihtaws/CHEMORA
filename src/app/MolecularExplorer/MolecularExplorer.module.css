@@ -20,9 +20,9 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 92vh;
+  min-height: 100vh;
   margin: 0;
-  padding: 2rem;
+  padding: 0;
   background-color: var(--background);
   font-family: 'Segoe UI', sans-serif;
 }
@@ -31,6 +31,7 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  padding: 2rem;
 }
 
 .title {
@@ -48,7 +49,7 @@
   position: relative;
 }
 
-/* New input wrapper */
+/* Input wrapper */
 .inputWrapper {
   flex: 1;
   position: relative;
@@ -56,14 +57,14 @@
 }
 
 .searchInput {
-  width: 100%; /* Changed from flex: 1 to width: 100% */
+  width: 100%;
   padding: 1rem 1.25rem;
   font-size: 1.1rem;
   border: 1px solid var(--border);
-  border-radius: 8px; /* Changed from 4px to 8px for consistency */
+  border-radius: 8px;
   background-color: var(--card-bg);
   color: var(--text);
-  transition: all 0.3s ease; /* Added transition */
+  transition: all 0.3s ease;
 }
 
 .searchInput:focus {
@@ -72,25 +73,25 @@
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
 }
 
-/* Updated suggestions list */
+/* Suggestions list */
 .suggestionsList {
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
   width: 100%;
-  z-index: 100; /* Increased z-index */
+  z-index: 100;
   background-color: var(--card-bg);
   border: 1px solid var(--border);
   border-top: none;
-  max-height: 250px; /* Increased from 200px */
+  max-height: 250px;
   overflow-y: auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
-  border-radius: 0 0 8px 8px; /* Changed from 4px to 8px */
+  box-shadow: var(--shadow);
+  border-radius: 0 0 8px 8px;
   margin: 0;
   padding: 0;
   list-style: none;
-  animation: slideIn 0.2s ease; /* Added animation */
+  animation: slideIn 0.2s ease;
   scrollbar-width: thin;
   scrollbar-color: var(--primary) transparent;
 }
@@ -109,11 +110,11 @@
 }
 
 .suggestionItem {
-  padding: 0.75rem 1.25rem; /* Slightly increased padding */
+  padding: 0.75rem 1.25rem;
   cursor: pointer;
   color: var(--text);
   transition: all 0.2s ease;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Added subtle separator */
+  border-bottom: 1px solid var(--border);
   font-size: 1rem;
 }
 
@@ -122,21 +123,26 @@
 }
 
 .suggestionItem:hover {
-  background-color: var(--hover-bg, rgba(59, 130, 246, 0.1));
-  color: var(--primary); /* Changed text color on hover */
+  background-color: var(--hover-bg);
+  color: var(--primary);
 }
 
-/* Updated search button */
+.selected {
+  background-color: var(--hover-bg);
+  color: var(--primary);
+}
+
+/* Search button */
 .searchButton {
   padding: 0.75rem 1.5rem;
   background-color: var(--primary);
   color: white;
   border: none;
-  border-radius: 8px; /* Changed from 4px to 8px */
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
   min-width: 120px;
-  transition: all 0.3s ease; /* Enhanced transition */
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,16 +151,17 @@
 
 .searchButton:hover {
   background-color: var(--primary-dark);
-  transform: translateY(-1px); /* Added subtle lift effect */
+  transform: translateY(-1px);
 }
 
 .searchButton:disabled {
-  background-color: #93b4f4;
+  background-color: var(--primary);
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
 }
 
-/* Added spinner */
+/* Spinner */
 .spinner {
   display: inline-block;
   width: 20px;
@@ -172,14 +179,14 @@
   margin: 1rem 0;
   padding: 1rem;
   background-color: rgba(220, 38, 38, 0.1);
-  border-radius: 8px; /* Changed from 4px to 8px */
-  animation: slideIn 0.3s ease; /* Added animation */
-  font-weight: 500; /* Added font weight */
+  border-radius: 8px;
+  animation: slideIn 0.3s ease;
+  font-weight: 500;
 }
 
 .results {
   margin-top: 2rem;
-  animation: slideIn 0.5s ease; /* Added animation */
+  animation: slideIn 0.5s ease;
 }
 
 .compoundHeader {
@@ -214,35 +221,9 @@
   border-radius: 8px;
   box-shadow: var(--shadow);
   width: 100%;
-  transition: all 0.3s ease; /* Added transition */
-  position: relative; /* For shimmer effect */
+  transition: all 0.3s ease;
+  position: relative;
   overflow: hidden;
-}
-
-/* Optional shimmer effect for cards */
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 200%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
 }
 
 .card:hover {
@@ -256,7 +237,7 @@
   font-size: 1.25rem;
   position: relative;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border, rgba(0, 0, 0, 0.1));
+  border-bottom: 1px solid var(--border);
 }
 
 .infoGrid {
@@ -270,7 +251,7 @@
   gap: 1rem;
   align-items: center;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Added subtle separator */
+  border-bottom: 1px solid var(--border);
 }
 
 .infoItem:last-child {
@@ -280,7 +261,7 @@
 .infoItem span:first-child {
   color: var(--text);
   opacity: 0.7;
-  font-weight: 500; /* Added font weight */
+  font-weight: 500;
 }
 
 .identifier {
@@ -297,9 +278,9 @@
 
 .structureBox {
   width: 100%;
-  transition: transform 0.3s ease; /* Added transition */
+  transition: transform 0.3s ease;
   padding: 1rem;
-  background-color: var(--background, #f8fafc);
+  background-color: var(--background);
   border-radius: 8px;
 }
 
@@ -318,7 +299,7 @@
   height: 400px;
   border-radius: 8px;
   object-fit: contain;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .viewer3D {
@@ -326,79 +307,9 @@
   height: 700px;
   border: none;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .title {
-    font-size: 2rem;
-  }
-
-  .searchBox {
-    flex-direction: column;
-  }
-
-  .searchButton {
-    width: 100%;
-  }
-
-  .compoundHeader {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
-  }
-
-  .infoItem {
-    grid-template-columns: 1fr;
-  }
-
-  .structureImage {
-    width: 100%;
-    height: auto;
-  }
-  
-  .viewer3D {
-    height: 500px; /* Reduced height on mobile */
-  }
-  
-  /* Fix suggestions positioning on mobile */
-  .suggestionsList {
-    position: absolute;
-    top: 100%;
-    max-height: 200px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .results,
-  .error,
-  .suggestionsList {
-    animation: none;
-  }
-  
-  .card::before {
-    animation: none;
-  }
-  
-  .structureBox:hover,
-  .card:hover {
-    transform: none;
-  }
-  
-  .searchButton:hover {
-    transform: none;
-  }
-  
-  .spinner {
-    animation: none;
-    border: 2px solid white;
-    border-top-color: rgba(255, 255, 255, 0.3);
-  }
-}
 /* Search History Styles */
 .historyContainer {
   margin-top: 1rem;
@@ -427,7 +338,8 @@
 .clearHistoryBtn {
   background: none;
   border: none;
-  color: var(--text-secondary, #666);
+  color: var(--text);
+  opacity: 0.7;
   font-size: 0.8rem;
   cursor: pointer;
   text-decoration: underline;
@@ -436,7 +348,7 @@
 }
 
 .clearHistoryBtn:hover {
-  color: var(--error, #ff3d00);
+  color: var(--error);
 }
 
 .historyList {
@@ -457,17 +369,69 @@
   cursor: pointer;
   transition: all 0.2s ease;
   color: var(--text);
-  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
+  box-shadow: var(--shadow);
 }
 
 .historyItem:hover {
-  background-color: var(--hover-bg, rgba(59, 130, 246, 0.1));
+  background-color: var(--hover-bg);
   color: var(--primary);
   transform: translateY(-1px);
-  box-shadow: var(--shadow, 0 2px 4px rgba(0, 0, 0, 0.1));
+  box-shadow: var(--shadow);
+}
+
+/* Responsive styles */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .searchContainer {
+    padding: 1.5rem;
+  }
+  
+  .structureImage {
+    width: 90%;
+    height: 350px;
+  }
+  
+  .viewer3D {
+    height: 600px;
+  }
 }
 
 @media (max-width: 768px) {
+  .searchContainer {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .searchBox {
+    flex-direction: column;
+  }
+
+  .searchButton {
+    width: 100%;
+  }
+
+  .compoundHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .infoItem {
+    grid-template-columns: 1fr;
+  }
+
+  .structureImage {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+  }
+  
+  .viewer3D {
+    height: 500px;
+  }
+  
   .historyContainer {
     max-width: 100%;
   }
@@ -477,18 +441,51 @@
   }
 }
 
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .searchInput {
+    padding: 0.8rem 1rem;
+  }
+  
+  .searchButton {
+    padding: 0.8rem 1.2rem;
+  }
+  
+  .viewer3D {
+    height: 400px;
+  }
+  
+  .card {
+    padding: 1.2rem;
+  }
+  
+  .card h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
+  .results,
+  .error,
+  .suggestionsList,
   .historyContainer {
     animation: none;
   }
   
+  .card:hover,
+  .structureBox:hover,
+  .searchButton:hover,
   .historyItem:hover {
     transform: none;
   }
-}
-
-.selected {
-  background-color: rgba(66, 133, 244, 0.2);
-  color: white;
-  outline: 1px solid rgba(66, 133, 244, 0.5);
+  
+  .spinner {
+    animation: none;
+    border: 2px solid white;
+    border-top-color: rgba(255, 255, 255, 0.3);
+  }
 }

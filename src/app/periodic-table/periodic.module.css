@@ -1,5 +1,6 @@
 /* periodic.module.css */
 
+/* Animations */
 @keyframes lift {
   0% {
     transform: translateY(0);
@@ -23,7 +24,7 @@
   flex-direction: column;
   min-height: 100vh;
   background-color: var(--background);
-  padding: 1rem;
+  padding: 0;
   font-family: 'Segoe UI', sans-serif;
 }
 
@@ -31,32 +32,33 @@
   max-width: 100%;
   margin: 0 auto;
   width: 100%;
+  padding: 1rem;
 }
 
 .header {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centers horizontally */
-  gap: 1rem;
-  margin-bottom: 1rem;
-  width: 100%; /* Ensures it spans the full width */
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  width: 100%;
 }
-
-
 
 .title {
   font-size: 2.5rem;
   color: var(--text);
   margin: 0;
+  text-align: center;
 }
 
 .periodicTable {
   display: grid;
-  grid-template-columns: repeat(18, minmax(45px, 1fr));
-  grid-template-rows: repeat(10, minmax(45px, 1fr));
+  grid-template-columns: repeat(18, minmax(40px, 1fr));
+  grid-template-rows: repeat(10, minmax(40px, 1fr));
   gap: 2px;
-  margin-top: 1rem;
+  margin: 0 auto;
   width: 100%;
+  overflow-x: auto;
+  padding-bottom: 1rem;
 }
 
 .element {
@@ -92,7 +94,7 @@
 .element:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  z-index: 1;
+  z-index: 10;
 }
 
 .element:active {
@@ -128,7 +130,7 @@
   text-align: center;
 }
 
-/* Element Categories with shadows */
+/* Element Categories */
 .nonmetal { 
   background-color: #76FF03; 
   color: #000; 
@@ -201,6 +203,7 @@
   box-shadow: 0 2px 8px rgba(224, 224, 224, 0.2);
 }
 
+/* Element Details Modal */
 .overlay {
   position: fixed;
   top: 0;
@@ -212,6 +215,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 1rem;
 }
 
 .elementDetails {
@@ -224,6 +228,14 @@
   overflow-y: auto;
   position: relative;
   box-shadow: var(--shadow);
+}
+
+.elementDetails h2 {
+  color: var(--text);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .closeButton {
@@ -239,6 +251,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  transition: background-color 0.2s ease;
 }
 
 .closeButton:hover {
@@ -247,6 +260,12 @@
 
 .detailsGrid {
   margin-top: 1rem;
+}
+
+.basicInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .detailRow {
@@ -275,21 +294,37 @@
   color: var(--error);
   text-align: center;
   padding: 1rem;
+  background-color: rgba(220, 38, 38, 0.1);
+  border-radius: 8px;
 }
 
-@media (hover: none) {
-  .element:hover {
-    transform: none;
-    box-shadow: none;
+/* Responsive styles */
+/* Mobile first approach */
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
   }
   
-  .element:active {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  .periodicTable {
+    grid-template-columns: repeat(18, 40px);
+    grid-template-rows: repeat(10, 40px);
+    overflow-x: auto;
   }
   
-  .element:active::before {
-    animation: shine 0.5s ease-in-out;
+  .elementDetails {
+    padding: 1.5rem;
+  }
+  
+  .detailRow {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .periodicTable {
+    grid-template-columns: repeat(18, minmax(45px, 1fr));
+    grid-template-rows: repeat(10, minmax(45px, 1fr));
   }
 }
 
@@ -318,6 +353,10 @@
 }
 
 @media (min-width: 1024px) {
+  .container {
+    padding: 2rem;
+  }
+  
   .periodicTable {
     grid-template-columns: repeat(18, minmax(60px, 1fr));
     grid-template-rows: repeat(10, minmax(60px, 1fr));
@@ -357,5 +396,30 @@
 
   .name, .mass {
     font-size: 0.7rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .element:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .element:active {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .element:hover, .element:active {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .element::before {
+    animation: none;
   }
 }

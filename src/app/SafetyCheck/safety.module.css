@@ -20,9 +20,9 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 92vh;
+  min-height: 100vh;
   margin: 0;
-  padding: 2rem;
+  padding: 0;
   background-color: var(--background);
   font-family: 'Segoe UI', sans-serif;
 }
@@ -31,6 +31,7 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  padding: 2rem;
 }
 
 .title {
@@ -40,6 +41,7 @@
   text-align: center;
 }
 
+/* Search box */
 .searchBox {
   display: flex;
   gap: 1rem;
@@ -47,7 +49,7 @@
   position: relative;
 }
 
-/* Input wrapper for better suggestion positioning */
+/* Input wrapper */
 .inputWrapper {
   flex: 1;
   position: relative;
@@ -55,14 +57,14 @@
 }
 
 .searchInput {
-  width: 100%; /* Changed from flex: 1 to width: 100% */
+  width: 100%;
   padding: 1rem 1.25rem;
   font-size: 1.1rem;
   border: 1px solid var(--border);
-  border-radius: 8px; /* Changed from 4px to 8px for consistency */
+  border-radius: 8px;
   background-color: var(--card-bg);
   color: var(--text);
-  transition: all 0.3s ease; /* Added transition */
+  transition: all 0.3s ease;
 }
 
 .searchInput:focus {
@@ -71,17 +73,76 @@
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
 }
 
+/* Suggestions list */
+.suggestionsList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: var(--shadow);
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 100;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: slideIn 0.2s ease;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+}
+
+.suggestionsList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.suggestionsList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.suggestionsList::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 3px;
+}
+
+.suggestionItem {
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--border);
+}
+
+.suggestionItem:last-child {
+  border-bottom: none;
+}
+
+.suggestionItem:hover {
+  background-color: var(--hover-bg);
+  color: var(--primary);
+}
+
+.selected {
+  background-color: var(--hover-bg);
+  color: var(--primary);
+}
+
+/* Search button */
 .searchButton {
   padding: 0.75rem 1.5rem;
   background-color: var(--primary);
   color: white;
   border: none;
-  border-radius: 8px; /* Changed from 4px to 8px */
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
   min-width: 120px;
-  transition: all 0.3s ease; /* Enhanced transition */
-  display: flex; /* Added for spinner alignment */
+  transition: all 0.3s ease;
+  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
@@ -89,16 +150,17 @@
 
 .searchButton:hover {
   background-color: var(--primary-dark);
-  transform: translateY(-1px); /* Added subtle lift effect */
+  transform: translateY(-1px);
 }
 
 .searchButton:disabled {
-  background-color: #93b4f4;
+  background-color: var(--primary);
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
 }
 
-/* Spinner for loading state */
+/* Spinner */
 .spinner {
   display: inline-block;
   width: 20px;
@@ -110,73 +172,40 @@
   margin-right: 8px;
 }
 
-.suggestionsList {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  width: 100%;
-  background-color: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 0 0 8px 8px; /* Changed from 4px to match input */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
-  max-height: 250px;
-  overflow-y: auto;
-  z-index: 100;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  animation: slideIn 0.2s ease; /* Added animation */
-}
-
-.suggestionItem {
-  padding: 0.75rem 1.25rem;
-  cursor: pointer;
-  color: var(--text);
-  transition: all 0.2s ease; /* Changed to all from background-color */
-  border-bottom: 1px solid var(--border);
-}
-
-.suggestionItem:last-child {
-  border-bottom: none;
-}
-
-.suggestionItem:hover {
-  background-color: var(--hover-bg, rgba(59, 130, 246, 0.1));
-  color: var(--primary); /* Added color change on hover */
-}
-
+/* Error message */
 .error {
   color: var(--error);
   text-align: center;
   margin: 1rem 0;
   padding: 1rem;
   background-color: rgba(220, 38, 38, 0.1);
-  border-radius: 8px; /* Changed from 4px to 8px */
-  animation: slideIn 0.3s ease; /* Added animation */
-  font-weight: 500; /* Added font weight */
+  border-radius: 8px;
+  animation: slideIn 0.3s ease;
+  font-weight: 500;
 }
 
+/* Results section */
 .results {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin-top: 2rem;
-  animation: slideIn 0.5s ease; /* Added animation */
+  animation: slideIn 0.5s ease;
 }
 
+/* Card component */
 .card {
   background-color: var(--card-bg);
   padding: 2rem;
   border-radius: 8px;
   box-shadow: var(--shadow);
-  transition: all 0.3s ease; /* Added transition */
-  position: relative; /* For shimmer effect if desired */
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .card:hover {
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
-  transform: translateY(-2px); /* Subtle lift effect */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
 .card h2 {
@@ -184,43 +213,46 @@
   margin-bottom: 1.5rem;
   color: var(--text);
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border, rgba(0, 0, 0, 0.1));
+  border-bottom: 1px solid var(--border);
   position: relative;
 }
 
+/* Signal word */
 .signal {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
   color: var(--text);
   padding: 0.75rem;
-  background-color: var(--background, #f8fafc);
+  background-color: var(--background);
   border-radius: 8px;
-  border-left: 4px solid var(--primary); /* Added accent border */
+  border-left: 4px solid var(--primary);
 }
 
+/* Pictograms */
 .pictograms {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   margin-bottom: 2rem;
-  justify-content: center; /* Better centering */
+  justify-content: center;
 }
 
 .pictogram {
   width: 100px;
   height: 100px;
   object-fit: contain;
-  transition: transform 0.3s ease; /* Added transition */
-  border-radius: 8px; /* Added rounded corners */
-  background-color: white; /* Ensure white background */
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+  background-color: white;
   padding: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .pictogram:hover {
-  transform: scale(1.05); /* Subtle zoom on hover */
+  transform: scale(1.05);
 }
 
+/* Hazards and precautions */
 .hazards, .precautions {
   margin-bottom: 2rem;
 }
@@ -235,24 +267,25 @@
 .hazard, .precaution {
   padding: 0.75rem 1rem;
   color: var(--text);
-  background-color: var(--background, #f8fafc);
+  background-color: var(--background);
   border-radius: 6px;
   margin-bottom: 0.5rem;
   transition: background-color 0.2s ease;
 }
 
 .hazard {
-  border-left: 3px solid #e53e3e; /* Red for hazards */
+  border-left: 3px solid var(--error);
 }
 
 .precaution {
-  border-left: 3px solid #38a169; /* Green for precautions */
+  border-left: 3px solid var(--success);
 }
 
 .hazard:hover, .precaution:hover {
-  background-color: var(--hover-bg, rgba(59, 130, 246, 0.05));
+  background-color: var(--hover-bg);
 }
 
+/* Section styling */
 .section {
   margin-bottom: 2rem;
   padding-bottom: 2rem;
@@ -281,7 +314,7 @@
 }
 
 .content {
-  background-color: var(--background, #f8fafc);
+  background-color: var(--background);
   padding: 1rem;
   border-radius: 8px;
 }
@@ -296,95 +329,6 @@
   margin-bottom: 0;
 }
 
-/* Custom scrollbar for suggestions list */
-.suggestionsList::-webkit-scrollbar {
-  width: 6px; /* Changed from 8px to 6px for subtlety */
-}
-
-.suggestionsList::-webkit-scrollbar-track {
-  background: var(--card-bg);
-  border-radius: 3px;
-}
-
-.suggestionsList::-webkit-scrollbar-thumb {
-  background-color: var(--primary, #3b82f6); /* Changed from border to primary */
-  border-radius: 3px;
-}
-
-.suggestionsList::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-dark, #2563eb);
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-  
-  .title {
-    font-size: 2rem;
-  }
-  
-  .searchBox {
-    flex-direction: column;
-  }
-  
-  .searchButton {
-    width: 100%;
-    margin-top: 0.5rem;
-  }
-  
-  .pictogram {
-    width: 80px;
-    height: 80px;
-  }
-  
-  .card {
-    padding: 1.5rem;
-  }
-
-  /* Fixed suggestion list positioning on mobile */
-  .suggestionsList {
-    position: absolute;
-    top: 100%;
-    max-height: 200px;
-    margin-bottom: 0;
-  }
-  
-  .hazard, .precaution {
-    padding: 0.5rem 0.75rem;
-  }
-  
-  .card h2 {
-    font-size: 1.5rem;
-  }
-  
-  .section h3, .hazards h3, .precautions h3 {
-    font-size: 1.2rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .results,
-  .error,
-  .suggestionsList {
-    animation: none;
-  }
-  
-  .spinner {
-    animation: none;
-    border: 2px solid white;
-    border-top-color: rgba(255, 255, 255, 0.3);
-  }
-  
-  .pictogram:hover {
-    transform: none;
-  }
-  
-  .card:hover {
-    transform: none;
-    box-shadow: var(--shadow);
-  }
-}
 /* Search History Styles */
 .historyContainer {
   margin-top: 1rem;
@@ -413,7 +357,8 @@
 .clearHistoryBtn {
   background: none;
   border: none;
-  color: var(--text-secondary, #666);
+  color: var(--text);
+  opacity: 0.7;
   font-size: 0.8rem;
   cursor: pointer;
   text-decoration: underline;
@@ -422,7 +367,7 @@
 }
 
 .clearHistoryBtn:hover {
-  color: var(--error, #ff3d00);
+  color: var(--error);
 }
 
 .historyList {
@@ -443,38 +388,116 @@
   cursor: pointer;
   transition: all 0.2s ease;
   color: var(--text);
-  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
+  box-shadow: var(--shadow);
 }
 
 .historyItem:hover {
-  background-color: var(--hover-bg, rgba(59, 130, 246, 0.1));
+  background-color: var(--hover-bg);
   color: var(--primary);
   transform: translateY(-1px);
-  box-shadow: var(--shadow, 0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Responsive styles */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .searchContainer {
+    padding: 1.5rem;
+  }
+  
+  .card {
+    padding: 1.75rem;
+  }
 }
 
 @media (max-width: 768px) {
+  .searchContainer {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .searchBox {
+    flex-direction: column;
+  }
+  
+  .searchButton {
+    width: 100%;
+  }
+  
+  .pictogram {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .card h2 {
+    font-size: 1.5rem;
+  }
+  
+  .section h3, .hazards h3, .precautions h3 {
+    font-size: 1.2rem;
+  }
+  
   .historyContainer {
     max-width: 100%;
   }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
+  }
   
-  .historyList {
-    margin-bottom: 1rem;
+  .searchInput {
+    padding: 0.8rem 1rem;
+  }
+  
+  .searchButton {
+    padding: 0.8rem 1.2rem;
+  }
+  
+  .card {
+    padding: 1.2rem;
+  }
+  
+  .hazard, .precaution {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .pictogram {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .signal {
+    font-size: 1rem;
+    padding: 0.5rem;
   }
 }
 
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
+  .results,
+  .error,
+  .suggestionsList,
   .historyContainer {
     animation: none;
   }
   
+  .spinner {
+    animation: none;
+    border: 2px solid white;
+    border-top-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .pictogram:hover,
+  .card:hover,
+  .searchButton:hover,
   .historyItem:hover {
     transform: none;
   }
-}
-
-.selected {
-  background-color: rgba(66, 133, 244, 0.2);
-  color: white;
-  outline: 1px solid rgba(66, 133, 244, 0.5);
 }

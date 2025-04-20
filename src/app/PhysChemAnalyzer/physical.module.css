@@ -1,5 +1,6 @@
 /* physical.module.css */
 
+/* Animations */
 @keyframes slideIn {
   from {
     transform: translateY(20px);
@@ -19,29 +20,17 @@
     background-position: 200% 0;
   }
 }
-/* Add a spinner animation for loading state */
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-/* Add a spinner for loading state */
-.spinner {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: white;
-  animation: spin 0.8s linear infinite;
-  margin-right: 8px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 0;
   background-color: var(--background);
   font-family: 'Segoe UI', sans-serif;
 }
@@ -50,6 +39,7 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  padding: 2rem;
 }
 
 .title {
@@ -59,6 +49,7 @@
   text-align: center;
 }
 
+/* Search Box */
 .searchBox {
   display: flex;
   gap: 1rem;
@@ -69,7 +60,7 @@
 .inputWrapper {
   flex: 1;
   position: relative;
-  z-index: 20; /* Ensure it stays above other elements when suggestions are shown */
+  z-index: 20;
 }
 
 .searchInput {
@@ -89,23 +80,23 @@
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
 }
 
-/* Improve suggestion list styling */
+/* Suggestions List */
 .suggestionsList {
   position: absolute;
-  top: calc(100% + 4px); /* Add a bit of space between input and suggestions */
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
-  background-color: var(--card-bg, white);
-  border: 1px solid var(--border, rgba(0, 0, 0, 0.1));
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+  box-shadow: var(--shadow);
   max-height: 300px;
   overflow-y: auto;
   z-index: 100;
   margin-top: 0.5rem;
   animation: slideIn 0.2s ease;
   scrollbar-width: thin;
-  scrollbar-color: var(--primary, #3b82f6) transparent;
+  scrollbar-color: var(--primary) transparent;
   padding: 0;
   list-style: none;
 }
@@ -135,35 +126,57 @@
   border-bottom: none;
 }
 
-/* Enhance suggestion item hover state */
 .suggestionItem:hover {
-  background-color: var(--hover-bg, rgba(59, 130, 246, 0.1));
-  color: var(--primary, #3b82f6);
+  background-color: var(--hover-bg);
+  color: var(--primary);
 }
 
+.selected {
+  background-color: var(--hover-bg);
+  color: var(--primary);
+}
 
+/* Search Button */
 .searchButton {
   padding: 0.75rem 1.5rem;
   background-color: var(--primary);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
   min-width: 120px;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .searchButton:hover {
   background-color: var(--primary-dark);
   transform: translateY(-1px);
 }
 
 .searchButton:disabled {
-  background-color: #93b4f4;
+  background-color: var(--primary);
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
 }
 
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+  margin-right: 8px;
+}
+
+/* Error Message */
 .error {
   color: var(--error);
   text-align: center;
@@ -174,6 +187,7 @@
   animation: slideIn 0.3s ease;
 }
 
+/* Results */
 .results {
   margin-top: 2rem;
   animation: slideIn 0.5s ease;
@@ -191,26 +205,27 @@
   font-weight: 500;
 }
 
+/* Property Cards */
 .propertyCards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
-/* Improve property card animation */
+
 .propertyCard {
-  background-color: var(--card-bg, white);
+  background-color: var(--card-bg);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   max-height: 300px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--primary, #3b82f6) transparent;
-  animation: slideIn 0.5s ease; /* Add animation to each card */
-  animation-fill-mode: both; /* Ensure final state is maintained */
+  scrollbar-color: var(--primary) transparent;
+  animation: slideIn 0.5s ease;
+  animation-fill-mode: both;
 }
 
 .propertyCard::before {
@@ -229,7 +244,7 @@
   animation: shimmer 2s infinite;
 }
 
-/* Add staggered animation delay to cards */
+/* Staggered animation for cards */
 .propertyCard:nth-child(2) { animation-delay: 0.1s; }
 .propertyCard:nth-child(3) { animation-delay: 0.2s; }
 .propertyCard:nth-child(4) { animation-delay: 0.3s; }
@@ -271,82 +286,7 @@
   border-radius: 3px;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .title {
-    font-size: 2rem;
-  }
-
-  .searchBox {
-    flex-direction: column;
-  }
-
-  .searchButton {
-    width: 100%;
-  }
-
-  .propertyCards {
-    grid-template-columns: 1fr;
-  }
-
-  .propertyCard {
-    padding: 1.25rem;
-  }
-
-  .suggestionsList {
-    position: absolute; /* Keep it absolute on mobile too */
-    top: 100%;
-    margin-top: 2px;
-    max-height: 200px; /* Smaller on mobile */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Add this to ensure proper stacking */
-  .inputWrapper {
-    z-index: 30; /* Higher z-index on mobile */
-  }
-  
-  /* Adjust animation delays for fewer columns */
-  .propertyCard:nth-child(odd) { animation-delay: 0.1s; }
-  .propertyCard:nth-child(even) { animation-delay: 0.2s; }
-
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .propertyCard::before {
-    animation: none;
-  }
-  
-  .propertyCard:hover {
-    transform: none;
-  }
-  
-  .error,
-  .results,
-  .suggestionsList {
-    animation: none;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .propertyCard::before {
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.05),
-      transparent
-    );
-  }
-
-  .suggestionsList {
-    background-color: var(--card-bg);
-    border-color: var(--border);
-  }
-}
-/* Search History Styles */
+/* Search History */
 .historyContainer {
   margin-top: 1rem;
   width: 100%;
@@ -374,7 +314,8 @@
 .clearHistoryBtn {
   background: none;
   border: none;
-  color: var(--text-secondary, #666);
+  color: var(--text);
+  opacity: 0.7;
   font-size: 0.8rem;
   cursor: pointer;
   text-decoration: underline;
@@ -383,7 +324,7 @@
 }
 
 .clearHistoryBtn:hover {
-  color: var(--error, #ff3d00);
+  color: var(--error);
 }
 
 .historyList {
@@ -404,17 +345,67 @@
   cursor: pointer;
   transition: all 0.2s ease;
   color: var(--text);
-  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
+  box-shadow: var(--shadow);
 }
 
 .historyItem:hover {
-  background-color: var(--hover-bg, rgba(59, 130, 246, 0.1));
+  background-color: var(--hover-bg);
   color: var(--primary);
   transform: translateY(-1px);
-  box-shadow: var(--shadow, 0 2px 4px rgba(0, 0, 0, 0.1));
+  box-shadow: var(--shadow);
+}
+
+/* Responsive Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .propertyCards {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  
+  .searchContainer {
+    padding: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
+  .searchContainer {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .searchBox {
+    flex-direction: column;
+  }
+
+  .searchButton {
+    width: 100%;
+  }
+
+  .propertyCards {
+    grid-template-columns: 1fr;
+  }
+
+  .propertyCard {
+    padding: 1.25rem;
+  }
+
+  .suggestionsList {
+    position: absolute;
+    top: 100%;
+    margin-top: 2px;
+    max-height: 200px;
+  }
+  
+  .inputWrapper {
+    z-index: 30;
+  }
+  
+  /* Adjust animation delays for fewer columns */
+  .propertyCard:nth-child(odd) { animation-delay: 0.1s; }
+  .propertyCard:nth-child(even) { animation-delay: 0.2s; }
+  
   .historyContainer {
     max-width: 100%;
   }
@@ -424,18 +415,57 @@
   }
 }
 
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .searchInput {
+    padding: 0.8rem 1rem;
+  }
+  
+  .searchButton {
+    padding: 0.8rem 1.2rem;
+  }
+  
+  .propertyCard {
+    padding: 1rem;
+  }
+  
+  .propertyCard h3 {
+    font-size: 1rem;
+  }
+  
+  .propertyCard p {
+    font-size: 0.9rem;
+  }
+  
+  .cidInfo h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
+  .propertyCard::before {
+    animation: none;
+  }
+  
+  .propertyCard,
+  .error,
+  .results,
+  .suggestionsList,
   .historyContainer {
     animation: none;
   }
   
-  .historyItem:hover {
+  .spinner {
+    animation: none;
+  }
+  
+  .propertyCard:hover,
+  .historyItem:hover,
+  .searchButton:hover {
     transform: none;
   }
-}
-
-.selected {
-  background-color: rgba(66, 133, 244, 0.2);
-  color: white;
-  outline: 1px solid rgba(66, 133, 244, 0.5);
 }

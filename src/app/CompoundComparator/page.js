@@ -348,7 +348,7 @@ export default function CompoundComparison() {
   return (
     <div className={styles.container}>
       <div className={styles.searchContainer}>
-        <h1 className={styles.title}>Compare Chemical Compounds</h1>
+        <h1 className={styles.title}>Compare Chemicals</h1>
 
         <div className={styles.searchBox}>
           <div className={styles.inputWrapper}>

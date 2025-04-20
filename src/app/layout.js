@@ -28,15 +28,17 @@ export default function RootLayout({ children }) {
           }}
         />
         <ThemeProvider>
-          <div style={{ display: 'flex' }}>
+          <div className="layout-container">
             <Sidebar />
-            <main style={{ marginLeft: '250px', width: '100%' }}>
-              {children}
-            </main>
+            <div className="content-wrapper">
+              <main className="main-content">
+                {children}
+              </main>
+              <footer className="footer">
+                © 2025 Chemora. All rights reserved.
+              </footer>
+            </div>
           </div>
-          <footer className="footer">
-            © 2025 Chemora. All rights reserved.
-          </footer>
         </ThemeProvider>
       </body>
     </html>

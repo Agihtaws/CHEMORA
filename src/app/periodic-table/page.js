@@ -183,7 +183,7 @@ export default function PeriodicTable() {
       <div className={styles.container}>
       <div className={styles.header}>
         
-        <h1 className={styles.title}>Periodic Table of Elements</h1>
+        <h1 className={styles.title}>Periodic Table</h1>
         </div>
         
         <div className={styles.periodicTable}>
