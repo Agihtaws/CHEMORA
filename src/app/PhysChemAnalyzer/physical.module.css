@@ -1,0 +1,441 @@
+/* physical.module.css */
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+/* Add a spinner animation for loading state */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add a spinner for loading state */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+  margin-right: 8px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: var(--background);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.searchContainer {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.searchBox {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.inputWrapper {
+  flex: 1;
+  position: relative;
+  z-index: 20; /* Ensure it stays above other elements when suggestions are shown */
+}
+
+.searchInput {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+/* Improve suggestion list styling */
+.suggestionsList {
+  position: absolute;
+  top: calc(100% + 4px); /* Add a bit of space between input and suggestions */
+  left: 0;
+  right: 0;
+  background-color: var(--card-bg, white);
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.1));
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 100;
+  margin-top: 0.5rem;
+  animation: slideIn 0.2s ease;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary, #3b82f6) transparent;
+  padding: 0;
+  list-style: none;
+}
+
+.suggestionsList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.suggestionsList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.suggestionsList::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 3px;
+}
+
+.suggestionItem {
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--border);
+}
+
+.suggestionItem:last-child {
+  border-bottom: none;
+}
+
+/* Enhance suggestion item hover state */
+.suggestionItem:hover {
+  background-color: var(--hover-bg, rgba(59, 130, 246, 0.1));
+  color: var(--primary, #3b82f6);
+}
+
+
+.searchButton {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  min-width: 120px;
+  transition: background-color 0.2s ease;
+}
+.searchButton:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.searchButton:disabled {
+  background-color: #93b4f4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error {
+  color: var(--error);
+  text-align: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: rgba(220, 38, 38, 0.1);
+  border-radius: 8px;
+  animation: slideIn 0.3s ease;
+}
+
+.results {
+  margin-top: 2rem;
+  animation: slideIn 0.5s ease;
+}
+
+.cidInfo {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.cidInfo h2 {
+  font-size: 1.5rem;
+  color: var(--text);
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.propertyCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+/* Improve property card animation */
+.propertyCard {
+  background-color: var(--card-bg, white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary, #3b82f6) transparent;
+  animation: slideIn 0.5s ease; /* Add animation to each card */
+  animation-fill-mode: both; /* Ensure final state is maintained */
+}
+
+.propertyCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+/* Add staggered animation delay to cards */
+.propertyCard:nth-child(2) { animation-delay: 0.1s; }
+.propertyCard:nth-child(3) { animation-delay: 0.2s; }
+.propertyCard:nth-child(4) { animation-delay: 0.3s; }
+.propertyCard:nth-child(5) { animation-delay: 0.4s; }
+.propertyCard:nth-child(6) { animation-delay: 0.5s; }
+.propertyCard:nth-child(7) { animation-delay: 0.6s; }
+.propertyCard:nth-child(8) { animation-delay: 0.7s; }
+
+.propertyCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.propertyCard h3 {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.propertyCard p {
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.propertyCard::-webkit-scrollbar {
+  width: 6px;
+}
+
+.propertyCard::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.propertyCard::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .searchBox {
+    flex-direction: column;
+  }
+
+  .searchButton {
+    width: 100%;
+  }
+
+  .propertyCards {
+    grid-template-columns: 1fr;
+  }
+
+  .propertyCard {
+    padding: 1.25rem;
+  }
+
+  .suggestionsList {
+    position: absolute; /* Keep it absolute on mobile too */
+    top: 100%;
+    margin-top: 2px;
+    max-height: 200px; /* Smaller on mobile */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Add this to ensure proper stacking */
+  .inputWrapper {
+    z-index: 30; /* Higher z-index on mobile */
+  }
+  
+  /* Adjust animation delays for fewer columns */
+  .propertyCard:nth-child(odd) { animation-delay: 0.1s; }
+  .propertyCard:nth-child(even) { animation-delay: 0.2s; }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .propertyCard::before {
+    animation: none;
+  }
+  
+  .propertyCard:hover {
+    transform: none;
+  }
+  
+  .error,
+  .results,
+  .suggestionsList {
+    animation: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .propertyCard::before {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.05),
+      transparent
+    );
+  }
+
+  .suggestionsList {
+    background-color: var(--card-bg);
+    border-color: var(--border);
+  }
+}
+/* Search History Styles */
+.historyContainer {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 600px;
+  animation: slideIn 0.3s ease;
+}
+
+.historyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.historyHeader h3 {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--text);
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.clearHistoryBtn {
+  background: none;
+  border: none;
+  color: var(--text-secondary, #666);
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.clearHistoryBtn:hover {
+  color: var(--error, #ff3d00);
+}
+
+.historyList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.historyItem {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.8rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text);
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
+}
+
+.historyItem:hover {
+  background-color: var(--hover-bg, rgba(59, 130, 246, 0.1));
+  color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow, 0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+@media (max-width: 768px) {
+  .historyContainer {
+    max-width: 100%;
+  }
+  
+  .historyList {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .historyContainer {
+    animation: none;
+  }
+  
+  .historyItem:hover {
+    transform: none;
+  }
+}
+
+.selected {
+  background-color: rgba(66, 133, 244, 0.2);
+  color: white;
+  outline: 1px solid rgba(66, 133, 244, 0.5);
+}

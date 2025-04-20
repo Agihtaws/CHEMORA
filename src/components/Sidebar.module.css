@@ -1,0 +1,76 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: var(--card-bg);
+    color: var(--text);
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+  }
+  
+  .logo {
+    padding: 1.5rem 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+    padding-left: 45px;
+  }
+  
+  .nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+  
+  .navItem {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    gap: 1rem;
+  }
+  
+  .navItem:hover {
+    background: var(--hover-bg);
+  }
+  
+  .active {
+    background: var(--primary);
+    color: white;
+  }
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .text {
+    font-size: 0.95rem;
+  }
+  
+  .themeToggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    width: 100%;
+    margin-top: auto;
+  }
+  

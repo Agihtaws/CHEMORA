@@ -1,0 +1,361 @@
+/* periodic.module.css */
+
+@keyframes lift {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: -100% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--background);
+  padding: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers horizontally */
+  gap: 1rem;
+  margin-bottom: 1rem;
+  width: 100%; /* Ensures it spans the full width */
+}
+
+
+
+.title {
+  font-size: 2.5rem;
+  color: var(--text);
+  margin: 0;
+}
+
+.periodicTable {
+  display: grid;
+  grid-template-columns: repeat(18, minmax(45px, 1fr));
+  grid-template-rows: repeat(10, minmax(45px, 1fr));
+  gap: 2px;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.element {
+  position: relative;
+  padding: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.element::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: all 0.3s ease;
+}
+
+.element:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 1;
+}
+
+.element:active {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.element:active::before {
+  animation: shine 0.5s ease-in-out;
+}
+
+.atomicNumber {
+  font-size: 0.6rem;
+  text-align: left;
+}
+
+.symbol {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.name {
+  font-size: 0.5rem;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mass {
+  font-size: 0.5rem;
+  text-align: center;
+}
+
+/* Element Categories with shadows */
+.nonmetal { 
+  background-color: #76FF03; 
+  color: #000; 
+  box-shadow: 0 2px 8px rgba(118, 255, 3, 0.2);
+}
+
+.noblegas { 
+  background-color: #64B5F6; 
+  color: #000; 
+  box-shadow: 0 2px 8px rgba(100, 181, 246, 0.2);
+}
+
+.alkali { 
+  background-color: #FF5252; 
+  color: #fff; 
+  box-shadow: 0 2px 8px rgba(255, 82, 82, 0.2);
+}
+
+.alkalineearth { 
+  background-color: #FF8A65; 
+  color: #000; 
+  box-shadow: 0 2px 8px rgba(255, 138, 101, 0.2);
+}
+
+.metalloid { 
+  background-color: #69F0AE; 
+  color: #000; 
+  box-shadow: 0 2px 8px rgba(105, 240, 174, 0.2);
+}
+
+.halogen { 
+  background-color: #FFEB3B; 
+  color: #000; 
+  box-shadow: 0 2px 8px rgba(255, 235, 59, 0.2);
+}
+
+.metal { 
+  background-color: #90A4AE; 
+  color: #000; 
+  box-shadow: 0 2px 8px rgba(144, 164, 174, 0.2);
+}
+
+.transition { 
+  background-color: #FF8A80; 
+  color: #000; 
+  box-shadow: 0 2px 8px rgba(255, 138, 128, 0.2);
+}
+
+.lanthanide { 
+  background-color: #B388FF; 
+  color: #000; 
+  box-shadow: 0 2px 8px rgba(179, 136, 255, 0.2);
+}
+
+.actinide { 
+  background-color: #EA80FC; 
+  color: #000; 
+  box-shadow: 0 2px 8px rgba(234, 128, 252, 0.2);
+}
+
+.posttransition { 
+  background-color: #82B1FF; 
+  color: #000; 
+  box-shadow: 0 2px 8px rgba(130, 177, 255, 0.2);
+}
+
+.unknown { 
+  background-color: #E0E0E0; 
+  color: #000; 
+  box-shadow: 0 2px 8px rgba(224, 224, 224, 0.2);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.elementDetails {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: var(--shadow);
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--text);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.closeButton:hover {
+  background: var(--hover-bg);
+}
+
+.detailsGrid {
+  margin-top: 1rem;
+}
+
+.detailRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.detailRow:last-child {
+  border-bottom: none;
+}
+
+.detailRow span:first-child {
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text);
+}
+
+.error {
+  color: var(--error);
+  text-align: center;
+  padding: 1rem;
+}
+
+@media (hover: none) {
+  .element:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .element:active {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  
+  .element:active::before {
+    animation: shine 0.5s ease-in-out;
+  }
+}
+
+@media (min-width: 768px) {
+  .periodicTable {
+    grid-template-columns: repeat(18, minmax(55px, 1fr));
+    grid-template-rows: repeat(10, minmax(55px, 1fr));
+    gap: 3px;
+  }
+
+  .element {
+    padding: 3px;
+  }
+
+  .atomicNumber {
+    font-size: 0.7rem;
+  }
+
+  .symbol {
+    font-size: 1.1rem;
+  }
+
+  .name, .mass {
+    font-size: 0.6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .periodicTable {
+    grid-template-columns: repeat(18, minmax(60px, 1fr));
+    grid-template-rows: repeat(10, minmax(60px, 1fr));
+    gap: 4px;
+  }
+
+  .element {
+    padding: 4px;
+  }
+
+  .atomicNumber {
+    font-size: 0.8rem;
+  }
+
+  .symbol {
+    font-size: 1.2rem;
+  }
+
+  .name, .mass {
+    font-size: 0.65rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .periodicTable {
+    grid-template-columns: repeat(18, minmax(70px, 1fr));
+    grid-template-rows: repeat(10, minmax(70px, 1fr));
+  }
+
+  .atomicNumber {
+    font-size: 0.9rem;
+  }
+
+  .symbol {
+    font-size: 1.4rem;
+  }
+
+  .name, .mass {
+    font-size: 0.7rem;
+  }
+}

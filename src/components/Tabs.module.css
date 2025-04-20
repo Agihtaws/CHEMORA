@@ -1,0 +1,118 @@
+/* Tabs.module.css */
+
+.tabsWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding: 2rem;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom scrollbar styling */
+.tabsWrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tabsWrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tabsWrapper::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 3px;
+}
+
+.tab {
+  flex: 0 0 182px; /* Fixed width for each tab */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Rest of the CSS remains the same */
+.tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.tab:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.tab:hover::before {
+  animation: shine 1s ease-in-out;
+}
+
+.icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  transition: transform 0.3s ease;
+}
+
+.tab:hover .icon {
+  transform: scale(1.1);
+}
+
+.label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--text);
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tabsWrapper {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .tab {
+    flex: 0 0 150px; /* Smaller width on mobile */
+    padding: 1rem;
+  }
+
+  .icon {
+    font-size: 2rem;
+  }
+
+  .label {
+    font-size: 0.9rem;
+  }
+}
