@@ -80,3 +80,7 @@ This project utilizes the following public APIs:
 ## 🎬 **Video Demo**
 
 🎥 **[Watch the Demo Video](https://youtu.be/Yyo6tZc9iKA)**
+
+## 📬 Contact
+
+- 💬 Discord: `swathi8118`
