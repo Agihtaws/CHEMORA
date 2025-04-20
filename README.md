@@ -1,41 +1,63 @@
-# CHEMORA
+CHEMORA: Chemistry API Explorer
+Overview
+Chemora is a comprehensive web application that harnesses the power of public chemistry APIs to provide detailed information about chemical compounds. Built for the StackUp April 2025 Coding Challenge, this project demonstrates innovative use of public APIs in the sciences and provides real value to chemistry students, researchers, and professionals.
 
-## Chemistry Learning Platform
+✨ Features
+Interactive Chemical Search: Instantly search for any chemical compound with autocomplete suggestions
+Comprehensive Property Display: View molecular, physical, and safety properties of compounds
+Interactive Periodic Table: Explore elements with detailed information and visualizations
+Chemical Comparison Tool: Compare properties between different compounds side-by-side
+Bioactivity Data: Access biological activity data for drug discovery research
+Safety Information: Critical GHS classification and hazard information for laboratory safety
+Responsive Design: Optimized for desktop and mobile devices
+🛠️ Technology Stack
+Frontend: Next.js with React
+API Integration: PubChem REST API, ChEMBL API
+Data Visualization: Custom CSS for interactive displays
+State Management: React Hooks for efficient state handling
+Autocomplete: Custom implementation with keyboard navigation
+📋 Installation & Setup
+Prerequisites
+Node.js (v14.0 or higher)
+npm (v6.0 or higher)
+Local Development
+bash
+Insert (⇧TAB)
 
-CHEMORA is an interactive web application designed to help users learn and explore chemistry concepts. The platform offers various tools and features to make chemistry education engaging and accessible.
+Hide
+# Clone the repository
+git clone https://github.com/yourusername/chemora.git
+cd chemora
 
-### Features
-
-- **Molecular Explorer**: Visualize and interact with molecular structures
-- **Chemical Properties**: Learn about different chemical compounds and their properties
-- **Physical Chemistry Analyzer**: Analyze physical properties of chemical substances
-- **Periodic Table**: Interactive periodic table with detailed element information
-- **Bio-Activity**: Explore biological activities of chemical compounds
-- **Compound Comparator**: Compare different compounds and their properties
-- **Safety Check**: Learn about chemical safety protocols and hazards
-
-### Getting Started
-
-1. Clone the repository:
-git clone https://github.com/Agihtaws/CHEMORA.git
-
-2. Install dependencies:
+# Install dependencies
 npm install
 
-
-3. Run the development server:
+# Start development server
 npm run dev
+Building for Production
+bash
+Insert (⇧TAB)
 
+Hide
+# Create optimized build
+npm run build
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+# Start production server
+npm start
+🔍 Usage Guide
+Home Page: Search for any chemical compound using the search bar
+Chemical Properties: View detailed molecular properties
+Physical Properties: Explore physical characteristics like boiling point and density
+Periodic Table: Interactive periodic table with detailed element information
+Compare Tool: Compare properties of two different compounds
+Bioactivity: Access biological activity data for pharmaceuticals
+Safety Information: View GHS hazard classifications and safety data
+🧪 API Documentation
+This project utilizes the following public APIs:
 
-### Technologies Used
+PubChem PUG REST API: For chemical compound data and properties
+PubChem PUG View API: For retrieving detailed compound information
+ChEMBL API: For bioactivity data
+🎬 Video Demo
+Watch the Demo Video
 
-- Next.js
-- React
-- CSS Modules
-- Theme switching (Light/Dark mode)
-
-### License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
