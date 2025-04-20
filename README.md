@@ -77,7 +77,6 @@ This project utilizes the following public APIs:
 - **[PubChem PUG View API](https://pubchemdocs.ncbi.nlm.nih.gov/pug-view)**: For retrieving detailed compound information  
 - **[ChEMBL API](https://www.ebi.ac.uk/chembl/ws/)**: For bioactivity data  
 
-
 ## 🎬 **Video Demo**
 
-🎥 **[Watch the Demo Video](#)**
+🎥 **[Watch the Demo Video](https://youtu.be/Yyo6tZc9iKA)**
